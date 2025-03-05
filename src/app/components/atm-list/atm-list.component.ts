@@ -58,7 +58,7 @@ export class AtmListComponent implements AfterViewInit {
     'image',
     'action',
   ];
-  dataSource = new MatTableDataSource<Atm>([]);
+  dataSource = new MatTableDataSource<Atm & { index: any }>([]);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -113,7 +113,9 @@ export class AtmListComponent implements AfterViewInit {
     }
 
     // Clean data (optional)
-    const cleanedData = data.map(({ isDeleted, deletedAt, id, ...atm }) => atm);
+    const cleanedData = data.map(
+      ({ isDeleted, deletedAt, id, index, ...atm }) => atm
+    );
 
     // Convert data to worksheet
     const worksheet = XLSX.utils.json_to_sheet(cleanedData);
@@ -128,13 +130,7 @@ export class AtmListComponent implements AfterViewInit {
       type: 'array',
     });
     const blob = new Blob([excelBuffer], { type: 'application/octet-stream' });
-    saveAs(blob, 'atm-list.xlsx');
-  }
-
-  applyFilter(searchValue: string) {
-    const filterValue = searchValue.trim().toLowerCase();
-    this.dataSource.filter = filterValue;
-    this.fetchAtmData();
+    saveAs(blob, `atm-list_${Date.now()}.xlsx`);
   }
 
   convertToXml(data: any[]): string {
@@ -150,6 +146,12 @@ export class AtmListComponent implements AfterViewInit {
 
     xml += '</atms>';
     return xml;
+  }
+
+  applyFilter(searchValue: string) {
+    const filterValue = searchValue.trim().toLowerCase();
+    this.dataSource.filter = filterValue;
+    this.fetchAtmData();
   }
 
   onAddNew() {
