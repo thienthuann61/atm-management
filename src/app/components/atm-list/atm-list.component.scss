@@ -1,0 +1,28 @@
+.atm-list-page {
+  display: flex;
+  flex-direction: column;
+  row-gap: 24px;
+  margin-block: 24px;
+
+  .action-area-wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    column-gap: 16px;
+  }
+
+  .action-area {
+    display: flex;
+    justify-content: end;
+    column-gap: 16px;
+  }
+
+  .action-search {
+    flex: 1;
+    margin-right: 16px;
+  }
+
+  .search-field {
+    width: 100%;
+  }
+}

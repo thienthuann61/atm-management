@@ -1,1 +1,39 @@
-/* You can add global styles to this file, and also import other style files */
+html,
+body {
+  height: 100%;
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.container {
+  max-width: 1400px;
+  width: calc(100% - 48px);
+  padding: 0 15px;
+  margin-inline: auto;
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.mat-mdc-form-field-error-wrapper {
+  padding: 0 !important;
+}
+
+.mat-mdc-dialog-content {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 4px !important;
+}
+
+.action-search .mat-mdc-form-field-subscript-wrapper {
+  display: none;
+}
